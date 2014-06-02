@@ -1,8 +1,22 @@
+body, html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.grid {
+  height: 100%;
+}
+
 .square {
-  width: 100px;
-  height: 100px;
+  width: 33%;
+  height: 100%;
   outline: black solid 1px;
   float: left;
+}
+
+.row {
+  height: 33%;
 }
 
 .row:after {

@@ -93,9 +93,6 @@
   };
 
   Game.prototype.valid = function (pos) {
-    // Check to see if the co-ords are on the board and the spot is
-    // empty.
-
     function isInRange (pos) {
       return (0 <= pos) && (pos < 3);
     }
@@ -136,7 +133,7 @@
     $('.grid').on('click', '.square', function(event) {
 
       var clickedSquare = $(this);
-      var coords = clickedSquare.attr("name").split(",");
+      var coords = clickedSquare.data("pos").split(",");
       console.log(coords);
 
       if (game.valid(coords)) {
@@ -171,37 +168,6 @@
     this.board = this.makeBoard();
     $('.square').removeAttr('style');
   };
-
-  //
-  // Game.prototype.run = function () {
-  //   var game = this;
-
-    // game.turn(function(){
-//       if (game.winner()) {
-//         console.log("Someone won!");
-//         READER.close();
-//       } else {
-//         game.printBoard();
-//         game.run();
-//       }
-//     });
-  // }
-
-  Game.prototype.turn = function (callback) {
-    var game = this;
-
-    READER.question("Enter coordinates like [row,column]: ",function(strCoords){
-      var coords = eval(strCoords); // Totally insecure way to parse the string "[1,2]" into the array [1,2].
-      if (game.valid(coords)) {
-        game.move(coords);
-        callback();
-      } else {
-        console.log("Invalid coords!");
-        game.turn(callback);
-      }
-    });
-  }
 })(this);
 
 
-// First we instantiate a new object with the this.TTT.Game() constructor function.
